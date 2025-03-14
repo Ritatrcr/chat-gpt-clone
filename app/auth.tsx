@@ -3,6 +3,9 @@ import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from "react-native";
 import { useRouter } from "expo-router";
 import { useAuth } from "../context/authContext/AuthProvider";
+import codegenNativeCommands from "react-native/Libraries/Utilities/codegenNativeCommands";
+import { validatePassword } from "firebase/auth";
+import { BaseAnimationBuilder } from "react-native-reanimated";
 
 const AuthScreen = () => {
   const router = useRouter();
@@ -15,6 +18,8 @@ const AuthScreen = () => {
     if (!email || !password) {
       Alert.alert("Error", "Por favor ingresa un email y una contraseña.");
       return;
+
+
     }
 
     try {
@@ -94,6 +99,7 @@ const AuthScreen = () => {
         <Text style={styles.anonText}>Ingresar como Anónimo</Text>
       </TouchableOpacity>
     </View>
+
   );
 };
 
@@ -111,6 +117,7 @@ const styles = StyleSheet.create({
     color: '#00b894', // Optional: Change color to highlight the text
     fontWeight: 'bold', // Optional: Make it bold
   },
+  
 });
 
 export default AuthScreen;

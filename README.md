@@ -1,50 +1,119 @@
-# Welcome to your Expo app 👋
+# Chat App - React Native con Expo y Firebase
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## 📌 Descripción
+Esta aplicación de chat está construida con **React Native** utilizando **Expo Router** y **Firebase**. Permite a los usuarios autenticarse, crear chats y comunicarse con un bot basado en la API de **Gemini** (IA de Google).
 
-## Get started
+## 🚀 Características
+- **Autenticación con Firebase:** Iniciar sesión con email/contraseña o anónimamente.
+- **Gestión de chats:** Crear, editar y eliminar chats asociados a cada usuario.
+- **Mensajería con IA:** Envío de mensajes a la API de Gemini y almacenamiento en Firestore.
+- **Diseño optimizado:** UI moderna con modo oscuro.
+- **Expo Router:** Navegación fluida entre pantallas.
 
-1. Install dependencies
+## 🛠 Tecnologías Utilizadas
+- **React Native** con Expo Router
+- **Firebase Authentication** y **Firestore**
+- **Gemini API** (Google Generative AI)
+- **React Context API** para manejo de estado
+- **TypeScript** para tipado seguro
 
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-    npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+## 📂 Estructura del Proyecto
+```
+📦 chat-app
+ ┣ 📂 api
+ ┃ ┗ 📜 geminiApi.ts    # Llamadas a la API de Gemini
+ ┣ 📂 app
+ ┃ ┣ 📜 _layout.tsx      # Configuración de navegación
+ ┃ ┣ 📜 auth.tsx         # Pantalla de autenticación
+ ┃ ┣ 📜 dashboard.tsx    # Lista de chats
+ ┃ ┣ 📜 conversation.tsx # Chat individual
+ ┃ ┣ 📜 firstScreen.tsx  # Pantalla de bienvenida
+ ┃ ┗ 📜 splash.tsx       # Pantalla de carga inicial
+ ┣ 📂 assets
+ ┣ 📂 context
+ ┃ ┣ 📜 AuthProvider.tsx  # Contexto de autenticación
+ ┃ ┗ 📜 DataContext.tsx   # Contexto de gestión de datos (chats)
+ ┣ 📂 interfaces
+ ┃ ┗ 📜 AppInterfaces.ts  # Interfaces de datos
+ ┣ 📂 utils
+ ┃ ┗ 📜 firebaseConfig.ts # Configuración de Firebase
+ ┣ 📜 .env.example       # Archivo ejemplo para variables de entorno
+ ┣ 📜 app.json           # Configuración de Expo
+ ┣ 📜 babel.config.js    # Configuración de Babel
+ ┣ 📜 package.json       # Dependencias del proyecto
+ ┗ 📜 README.md          # Documentación del proyecto
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## 🔧 Instalación y Configuración
+### 1️⃣ Clonar el repositorio
+```sh
+git clone https://github.com/usuario/chat-app.git
+cd chat-app
+```
+### 2️⃣ Instalar dependencias
+```sh
+npm install
+```
+### 3️⃣ Configurar Firebase
+- Crear un proyecto en [Firebase](https://console.firebase.google.com/)
+- Habilitar **Authentication** (email/contraseña y anónimo)
+- Configurar **Firestore** con una colección `chats`
+- Agregar el archivo `firebaseConfig.ts` en `utils/` con las credenciales del proyecto
 
-## Learn more
+### 4️⃣ Configurar Variables de Entorno
+Renombrar `.env.example` a `.env` y agregar la clave de API de **Gemini**:
+```
+GEMINI_API_KEY=TU_CLAVE_DE_API
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+### 5️⃣ Ejecutar la Aplicación
+```sh
+npm start
+```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## 📌 Funcionalidades Clave
+### 🔹 Autenticación
+📌 Implementada en `AuthProvider.tsx`:
+- `login(email, password)`: Iniciar sesión.
+- `register(email, password)`: Crear cuenta.
+- `anonymousLogin()`: Acceso sin registro.
+- `logout()`: Cerrar sesión.
 
-## Join the community
+### 🔹 Chats
+📌 Gestionados en `DataContext.tsx`:
+- `createChat(text, messages)`: Crea un nuevo chat.
+- `updateChat(id, messages)`: Actualiza los mensajes de un chat.
+- `getChats()`: Obtiene los chats del usuario.
 
-Join our community of developers creating universal apps.
+### 🔹 Mensajería con Gemini
+📌 Manejada en `geminiApi.ts`:
+```ts
+export const getGeminiResponse = async (userMessage: string): Promise<string> => {
+  try {
+    const response = await fetch(API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ contents: [{ parts: [{ text: userMessage }] }] })
+    });
+    const data = await response.json();
+    return data?.candidates?.[0]?.content?.parts?.[0]?.text || 'No response received.';
+  } catch (error) {
+    console.error('Error fetching API:', error);
+    return 'Error en la respuesta del bot.';
+  }
+};
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## 🎨 Capturas de Pantalla
+| Pantalla | Imagen |
+|----------|--------|
+| **Login** | 🖼️ ![Auth](assets/screenshots/auth.png) |
+| **Lista de Chats** | 🖼️ ![Dashboard](assets/screenshots/dashboard.png) |
+| **Chat con IA** | 🖼️ ![Chat](assets/screenshots/chat.png) |
+
+## 📜 Licencia
+Este proyecto está bajo la **MIT License**.
+
+---
+💡 **Desarrollado por:** [Tu Nombre](https://github.com/usuario) 🚀
+
