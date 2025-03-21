@@ -106,15 +106,15 @@ export const getGeminiResponse = async (userMessage: string): Promise<string> =>
 ## 🎨 Capturas de Pantalla
 | Pantalla | Imagen |
 |----------|--------|
-| **Splash Screen** | 🖼️ ![Auth](assets/images/splash.png) |
-| **Welcome page** | 🖼️ ![Auth](assets/images/welcome_page.png) |
-| **Login** | 🖼️ ![Auth](assets/images/login.png) |
-| **Lista de Chats** | 🖼️ ![Dashboard](assets/images/lista_chats.png) |
-| **Chat con IA** | 🖼️ ![Chat](assets/images/chats_con_ai.png) |
+| **Splash Screen** | 🖼️ <img src="assets/images/splash.png" width="100"/> |
+| **Welcome page** | 🖼️ <img src="assets/images/welcome_page.png" width="100"/> |
+| **Login** | 🖼️ <img src="assets/images/login.png" width="100"/> |
+| **Lista de Chats** | 🖼️ <img src="assets/images/lista_chats.png" width="100"/> |
+| **Chat con IA** | 🖼️ <img src="assets/images/chats_con_ai.png" width="100"/> |
 
 ## 📜 Licencia
 Este proyecto está bajo la **MIT License**.
 
 ---
-💡 **Desarrollado por:** [Tu Nombre](https://github.com/ritatrcr) 🚀
+💡 **Desarrollado por:** [Rita Cruz](https://github.com/ritatrcr) 🚀
 
