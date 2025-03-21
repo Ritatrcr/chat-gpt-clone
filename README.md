@@ -20,8 +20,7 @@ Esta aplicación de chat está construida con **React Native** utilizando **Expo
 ## 📂 Estructura del Proyecto
 ```
 📦 chat-app
- ┣ 📂 api
- ┃ ┗ 📜 geminiApi.ts    # Llamadas a la API de Gemini
+ ┣
  ┣ 📂 app
  ┃ ┣ 📜 _layout.tsx      # Configuración de navegación
  ┃ ┣ 📜 auth.tsx         # Pantalla de autenticación
@@ -107,13 +106,15 @@ export const getGeminiResponse = async (userMessage: string): Promise<string> =>
 ## 🎨 Capturas de Pantalla
 | Pantalla | Imagen |
 |----------|--------|
-| **Login** | 🖼️ ![Auth](assets/screenshots/auth.png) |
-| **Lista de Chats** | 🖼️ ![Dashboard](assets/screenshots/dashboard.png) |
-| **Chat con IA** | 🖼️ ![Chat](assets/screenshots/chat.png) |
+| **Splash Screen** | 🖼️ ![Auth](assets/images/splash.png) |
+| **Welcome page** | 🖼️ ![Auth](assets/images/welcome_page.png) |
+| **Login** | 🖼️ ![Auth](assets/images/login.png) |
+| **Lista de Chats** | 🖼️ ![Dashboard](assets/images/lista_chats.png) |
+| **Chat con IA** | 🖼️ ![Chat](assets/images/chats_con_ai.png) |
 
 ## 📜 Licencia
 Este proyecto está bajo la **MIT License**.
 
 ---
-💡 **Desarrollado por:** [Tu Nombre](https://github.com/usuario) 🚀
+💡 **Desarrollado por:** [Tu Nombre](https://github.com/ritatrcr) 🚀
 
